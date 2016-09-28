@@ -1,0 +1,15 @@
+{
+    "name": "shortlist-digital/wp-plugin-generator",
+    "description": "Generate a wordpress plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jon Sherrard",
+            "email": "jon@andthats.it"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "cocur/slugify": "^2.3"
+    }
+}

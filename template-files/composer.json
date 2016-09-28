@@ -1,0 +1,13 @@
+{
+    "name": "shortlist-digital/{{projectName}}",
+    "description": "{{description}}",
+    "type": "wordpress-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Shortlist Studio",
+            "email": "hi@shortlist.studio"
+        }
+    ],
+    "require": {}
+}
