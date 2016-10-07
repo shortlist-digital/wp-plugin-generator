@@ -29,17 +29,10 @@ class CreatePlugin
 
     public function promptForDetails()
     {
-        $line = readline("Project name: ");
-        readline_add_history($line);
-        $line = readline("Description: ");
-        readline_add_history($line);
-        $line = readline("Gihub username: ");
-        readline_add_history($line);
-        $input = readline_list_history();
         return [
-          'projectName' => $input[0],
-          'description' => $input[1],
-          'userName' => $input[2]
+          'projectName' => readline("Project name: "),
+          'description' => readline("Description: "),
+          'userName' => readline("Gihub username: ")
         ];
     }
 
