@@ -11,10 +11,12 @@ class CreatePlugin
         $this->templateDirectory = __DIR__."/template-files";
         $slugify = new Slugify();
         $this->input = $input = $this->promptForDetails();
+        $this->projectNiceName = $input['projectName'];
         $this->projectName = $slugify->slugify($input['projectName']);
         $this->description = $input['description'];
         $this->line("Project name slugified to {$this->projectName}");
         $this->userName = $input['userName'];
+        $this->camelCaseName = $this->dashesToCamelCase($this->projectName);
         $this->createRepo();
         $this->createFolder();
         $this->getTemplateFiles();
@@ -83,7 +85,11 @@ class CreatePlugin
     public function getComposer()
     {
         $composerString = file_get_contents($this->templateDirectory."/composer.json");
-        $fileString = $this->fillTemplate($this->input, $composerString);
+        $fileString = $this->fillTemplate([
+          'className' => $this->camelCaseName,
+          'description' => $this->description,
+          'projectName'=> $this->projectName
+        ], $composerString);
         file_put_contents('composer.json', $fileString);
     }
 
@@ -97,11 +103,11 @@ class CreatePlugin
     public function getPluginFile()
     {
         $composerString = file_get_contents($this->templateDirectory."/plugin-file.php");
-        $className = $this->dashesToCamelCase($this->projectName);
         $fileString = $this->fillTemplate([
-          'className' => $className,
+          'className' => $this->camelCaseName,
           'description' => $this->description,
-          'projectName'=> $this->projectName
+          'projectName'=> $this->projectName,
+          'projectNiceName'=> $this->projectNiceName
         ], $composerString);
         file_put_contents("{$this->projectName}.php", $fileString);
     }

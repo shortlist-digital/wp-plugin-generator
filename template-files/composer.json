@@ -9,5 +9,11 @@
             "email": "hi@shortlist.studio"
         }
     ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "{{className}}\\": "app/"
+        }
+    },
     "require": {}
 }
